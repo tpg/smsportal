@@ -1,0 +1,42 @@
+{
+    "name": "thepublicgood/smsportal",
+    "description": "SMSPortal client for Laravel",
+    "require": {
+        "php": "^8.1",
+        "laravel/framework": "^9.26",
+        "guzzlehttp/guzzle": "^7.4"
+    },
+    "require-dev": {
+        "pestphp/pest": "^1.21",
+        "orchestra/testbench": "^7.7"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "TPG\\SMSPortal\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "TPG\\SMSPortal\\Tests\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "THEPUBLICGOOD",
+            "email": "makers@thepublicgood.dev"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "TPG\\SMSPortal\\SMSPortalServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    }
+}
