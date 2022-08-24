@@ -1,5 +1,7 @@
 # SMSPortal client for Laravel
 
+[![Tests](https://github.com/tpg/smsportal/actions/workflows/tests.yml/badge.svg)](https://github.com/tpg/smsportal/actions/workflows/tests.yml)
+
 This library provides a complete implementation of the SMSPortal Rest API for Laravel. The library provides a generic client you can use to send SMSs and a Laravel Notifications Channel which can be used to easily send SMSs to specific entities.
 
 Installation through Composer:
