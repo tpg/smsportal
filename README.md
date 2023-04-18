@@ -82,7 +82,7 @@ public function sms(SMSPortalClient $client)
 ```
 
 ## Laravel Notifications
-If you want to use SMSPortal through Laravel Notifications, create a new Notification class and add `SMSPortalChannel::class` to the array returned by the `via` method:
+If you want to use SMSPortal through Laravel Notifications, create a new `Notification` class and add `smsportal` to the array returned by the `via` method:
 
 ```php
 use TPG\SMSPortal\SMSPortalChannel;
@@ -90,17 +90,26 @@ use TPG\SMSPortal\SMSPortalChannel;
 public function via($notifiable): array
 {
     return [
-        SMSPortalChannel::class,
+        'smsportal',
     ]
 }
 ```
 
-Then define a `toSMSPortal` method on the notification and return a `Message` object:
+Then define a `toSMSPortal` method on the notification and return a message `string`:
 
 ```php
-public function toSMSPortal($notifiable): Message
+public function toSMSPortal($notifiable): string
 {
-    return new Message($notifiable->mobile, 'Hello, '.$notifiable->name);
+    'Hello, '.$notifiable->name;
+}
+```
+
+On the notifiable class (your `User` class, for example) define a `routeNotificationForSMSPortal` method that returns the correct mobile number to send to:
+
+```php
+public function routeNotificationForSmsPortal(Notification $notification): string
+{
+    return $this->mobile;
 }
 ```
 

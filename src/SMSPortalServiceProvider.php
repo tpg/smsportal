@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace TPG\SMSPortal;
 
+use Illuminate\Notifications\ChannelManager;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\ServiceProvider;
 use TPG\SMSPortal\Contracts\SMSPortalClient;
 
@@ -26,5 +28,11 @@ class SMSPortalServiceProvider extends ServiceProvider
         });
 
         $this->app->bind('tpg.smsportal.facade', fn () => app(SMSPortalClient::class));
+
+        Notification::resolved(function (ChannelManager $service) {
+            $service->extend('smsportal', function ($app) {
+                return new SMSPortalChannel(app(SMSPortalClient::class));
+            });
+        });
     }
 }
